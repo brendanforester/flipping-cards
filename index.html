@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - FlippingCards</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="flashcards-app">
+  <div class="input">
+    <div>
+      <label for="side1">
+        <input type="text" placeholder="Enter question here" v-model="newSide1" id="side1">
+      </label>
+      <label for="side2">
+        <input type="text" placeholder="Enter answer here" v-model="newSide2" id="side2">
+      </label>
+    </div>
+    <div>
+      <input type="radio" v-model="newCategory" id="history" value="history">
+      <label for="history">History</label>
+      <input type="radio" v-model="newCategory" id="science" value="science">
+      <label for="science">Science</label>
+      <input type="radio" v-model="newCategory" id="math" value="math">
+      <label for="math">Math</label>
+    </div>
+    <div>
+      <button v-on:click="submit">Submit</button>
+    </div>
+  </div>
+  <div v-for="item,index in cards" class="card" v-on:click="flipCard(index)">
+    <div class="top" v-bind:class="item.category"></div>
+    <div class="side1" v-bind:class="{hide:item.flipped===true}">
+      <h1>{{item.question}}</h1>
+    </div>
+    <div class="side2" v-bind:class="{hide:item.flipped===false}">
+      <h1>{{item.answer}}</h1>
+    </div>
+  </div>
+
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
